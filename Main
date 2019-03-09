@@ -1,0 +1,38 @@
+import java.io.*;
+import java.util.Scanner;
+
+public class Filesreader2 {
+    public static void main(String[] args)throws IOException {
+String filePath ="D:\\Users\\Programowanie\\IdeaProjects\\Files reader\\src\\test.txt";
+Scanner numberIn = new Scanner(System.in);
+System.out.println("Podaj liczbę do zapisania do pliku:");
+int number;
+number = numberIn.nextInt();
+        FileWriter fileWriter = null;
+
+        try{
+            fileWriter= new FileWriter(filePath);
+            fileWriter.write(Integer.toString(number));
+        }finally {
+            if(fileWriter != null){
+                fileWriter.close();
+            }
+        }
+
+int result = 0;
+        BufferedReader fileReader = null;
+        try {
+            fileReader= new BufferedReader(new FileReader(filePath));
+            String numberAsString = fileReader.readLine();
+            result = Integer.parseInt(numberAsString);
+        } finally {
+            if (fileReader != null) {
+                fileReader.close();
+            }
+        }
+
+
+    System.out.println("Wartośc odczytana z pliku: " + result);
+
+    }
+}
